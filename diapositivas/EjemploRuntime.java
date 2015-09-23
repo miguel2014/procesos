@@ -14,13 +14,14 @@ public class EjemploRuntime {
 		try {
 			Process p=runTime.exec( "gedit");
 			Process p1=runTime.exec("firefox http://www.genbeta.com/");
+			Process p2=runTime.exec("ls -la");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			Thread.sleep(20_000);
 			System.out.println("Programa principal durmiendo 20 s");
+			Thread.sleep(20_000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Programa interrumpido");
