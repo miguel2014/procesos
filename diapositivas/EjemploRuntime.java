@@ -14,7 +14,7 @@ public class EjemploRuntime {
 		try {
 			Process p=runTime.exec( "gedit");
 			Process p1=runTime.exec("firefox http://www.genbeta.com/");
-			Process p2=runTime.exec("ls -la");
+			Process p2=runTime.exec("ls -la");	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
