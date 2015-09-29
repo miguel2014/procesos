@@ -36,10 +36,13 @@ public class Ping2 {
 					lista.add(linea);	
 				}	
 			}
-			/*for (int i = 0; i < lista.size(); i++) {
-				campos=lista.get(i).split("/t");
-				
-			}*/
+			List <String> listaprueba=new ArrayList<String>();
+			listaprueba.add("Esta es una frase que quiero dividir");
+			listaprueba.add("esta es otra frase");
+			for (int i = 0; i < listaprueba.size(); i++) {
+				campos=listaprueba.get(i).split("/t");
+				System.out.println();
+			}
 			System.out.println(lista);
 			
 		} catch (IOException e) {
