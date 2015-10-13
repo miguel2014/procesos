@@ -37,12 +37,13 @@ public class Ping2 {
 				}	
 			}
 			List <String> listaprueba=new ArrayList<String>();
-			listaprueba.add("Esta es una frase que quiero dividir");
-			listaprueba.add("esta es otra frase");
-			for (int i = 0; i < listaprueba.size(); i++) {
-				campos=listaprueba.get(i).split("\\s");
+			listaprueba.add("time=90.6 es una frase que quiero dividir");
+			listaprueba.add("time=92.6 es otra frase");
+			for (int i = 0; i < lista.size(); i++) {
+				campos=lista.get(i).split("\\s");
 				
-				System.out.println(campos[0].substring(0,campos[0].length()-1));
+
+				System.out.println(campos[7].substring(5,campos[7].length()));
 			}
 			System.out.println(lista);
 			
