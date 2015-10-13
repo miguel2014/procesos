@@ -42,7 +42,7 @@ public class Ping2 {
 			for (int i = 0; i < listaprueba.size(); i++) {
 				campos=listaprueba.get(i).split("\\s");
 				
-				System.out.println(campos[1]);
+				System.out.println(campos[0].substring(0,campos[0].length()-1));
 			}
 			System.out.println(lista);
 			
