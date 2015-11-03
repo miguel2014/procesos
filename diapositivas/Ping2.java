@@ -51,6 +51,7 @@ public class Ping2 {
 			System.out.println(listadatos2);
 			}
 			System.out.println(tiempo);
+			//
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
