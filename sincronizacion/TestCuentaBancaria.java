@@ -17,8 +17,8 @@ public class TestCuentaBancaria {
 	
 }
 class CuentaBancaria{
-	private double saldo;
-
+	private  double saldo;
+	//private volatile double saldo;
 	public CuentaBancaria(double saldo) {
 			this.saldo = saldo;
 	}
