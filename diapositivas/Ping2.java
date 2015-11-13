@@ -4,14 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Ping2 {
 	public static void main(String[] args) {
 		//Pasamos como argumentos el host al que vamos a hacer ping
 		BufferedReader in=null;
-		List <String> listadatos1=new ArrayList<String>();
-		List <String> listadatos2=new ArrayList<String>();
+		List <String> listadatos1=new ArrayList<String>(); //Para el csv
+		List <String> listadatos2=new ArrayList<String>(); //Para datos ,min,max y media
+		int tamanoInicial;
+		int tamanoFinal;
+		String linea;
 		List <String> comandos=new ArrayList<String>();
 		ProcessBuilder pBuilder=null;
 		String[] campos=null;
@@ -21,37 +25,43 @@ public class Ping2 {
 			comandos.add("-c4");
 			pBuilder=new ProcessBuilder(comandos);
 		}
-		
 		try {
 			Process proceso=pBuilder.start();
 			in=new BufferedReader	(new InputStreamReader(proceso.getInputStream()));
 			in.readLine();
-			String linea=null;
+			linea=null;
 			while ((linea=in.readLine())!=null) {
 				listadatos1.add(linea);
-				if (listadatos2.size()<4) {
-					listadatos2.add(linea);	
-				}	
 			}
-			
+			//If que comprueba si se hace el ping mal
+			if (listadatos1.isEmpty()) {
+				System.out.println("Se introdujo mal la URL ");
+				System.exit(0);
+			}
 			campos=listadatos1.get(6).split("\\s");
-			//System.out.println(listadatos1.get(6));
-			int tamañoinicial=Integer.parseInt(campos[0]);
-			int tamañofinal=Integer.parseInt(campos[3]);
-			String tiempo=campos[9];
-			if (tamañoinicial !=tamañofinal) {
+			tamanoInicial=Integer.parseInt(campos[0]);
+			tamanoFinal=Integer.parseInt(campos[3]);
+			
+			if (tamanoInicial !=tamanoFinal) {
 				System.out.println("Se produjo un fallo en la conexión");
 				System.exit(0);
 			}
-			else{
-			for (int i = 0; i < listadatos2.size(); i++) {
-				campos=listadatos2.get(i).split("\\s");
-				System.out.println(campos[7].substring(5,campos[7].length()));
-			}
+			//Bucle que meten datos a lista2
+			
+			for (int i = 0; i < 4; i++) {
+				campos=listadatos1.get(i).split("\\s");
+				linea=campos[7].substring(5, campos[7].length());
+				listadatos2.add(linea);
+				}
+			Collections.sort(listadatos2);
 			System.out.println(listadatos2);
+			System.out.println("Min: "+listadatos2.get(0)+" ms.");
+			System.out.println("Max: "+listadatos2.get((listadatos2.size()-1))+" ms.");
+			double suma=0;
+			for (int i = 0; i < listadatos2.size(); i++) {
+				suma+=Double.parseDouble(listadatos2.get(i));
 			}
-			System.out.println(tiempo);
-			//
+			System.out.println("Media: "+Math.rint((suma/listadatos2.size())*100)/100 +" ms.");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
